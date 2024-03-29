@@ -18,12 +18,15 @@ services:
       ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       NODE_ENV: ${NODE_ENV}
+      STRAPI_ADMIN_API_TOKEN: ${STRAPI_ADMIN_API_TOKEN}                                                                                                                                                                                                                  
+      STRAPI_ADMIN_LIVE_STRIPE_SECRET_KEY: ${STRAPI_ADMIN_LIVE_STRIPE_SECRET_KEY}                                                                                                                                                                                                  
+      STRAPI_ADMIN_TEST_STRIPE_SECRET_KEY: ${STRAPI_ADMIN_TEST_STRIPE_SECRET_KEY}
     volumes:
       - ./backend/config:/opt/app/config
       - ./backend/src:/opt/app/src
       - ./backend/package.json:/opt/package.json
       - ./backend/yarn.lock:/opt/yarn.lock # Replace with package-lock.json if using npm
-      - ./backend/.env:/opt/app/.env
+      - ./.env:/opt/app/.env
     ports:
       - "1337:1337"
     networks:
@@ -42,7 +45,7 @@ services:
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
       MYSQL_DATABASE: ${DATABASE_NAME}
     volumes:
-      - ./data:/var/lib/mysql # if you want to use a bind folder
+      - ./.data:/var/lib/mysql # if you want to use a bind folder
     ports:
       - "3306:3306"
     networks:
